@@ -3,7 +3,7 @@ defmodule TinyTest do
   doctest Tiny
 
   test "start generate supervisor and chidren" do
-    sup_pid = Tiny.start(:test, [])
-    IO.puts Supervisor.which_children(sup_pid)
+    {:ok, sup_pid} = Tiny.start(:test, [])
+    assert [{Scenic, _pid, :supervisor, [Scenic]}] = Supervisor.which_children(sup_pid)
   end
 end
