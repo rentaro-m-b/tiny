@@ -1,18 +1,9 @@
 defmodule Tiny do
-  @moduledoc """
-  Documentation for `Tiny`.
-  """
+  use Application
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Tiny.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def start(_type, _args) do
+    main_viewport_config = Application.get_env(:tiny, :viewport)
+    children = [ {Scenic, [main_viewport_config]} ]
+    Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
