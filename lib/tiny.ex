@@ -1,4 +1,4 @@
-defmodule Tiny do
+defmodule Tiny.CLI do
   use Application
 
   def start(_type, _args) do
